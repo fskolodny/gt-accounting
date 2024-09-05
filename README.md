@@ -1,1 +1,1 @@
-# gt-accounting
+# gt-accounting## Installation```stMetacello new	repository: 'github://fskolodny/gt-accounting:master/src';	baseline: 'Accounting';	load```## Load Lepiter				After installing with Metacello, you will be able to execute```#BaselineOfAccounting asClass loadLepiter```
