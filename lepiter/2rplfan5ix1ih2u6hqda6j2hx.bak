@@ -175,14 +175,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-09-08T15:37:35.417568-04:00"
+						"dateAndTimeString" : "2024-09-08T15:37:00.602125-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "xf47ov3dDQCga8quBuwT/Q=="
 				},
-				"code" : "| bank twoDollars|\rbank := Bank new.\rtwoDollars := Money amount: 2 currency: #USD.\rself assert: (bank reduce: twoDollars to: #USD) equals: twoDollars.\rbank addExchangeRateFrom: #USD to: #CHF rate: 2.\rself assert: (bank reduce: (Money amount: 30 currency: #CHF) to: #USD) equals: (Money amount: 30 /2 currency: #USD).\rself assert: (bank reduce: (Money amount: 30 /2 currency: #USD) to: #CHF) equals: (Money amount: 30 currency: #CHF).\r^ bank"
+				"code" : "| bank twoDollars|\rbank := Bank new.\rtwoDollars := Money amount: 2 currency: #USD.\rself assert: (bank reduce: twoDollars to: #USD) equals: twoDollars.\rbank addExchangeRateFrom: #USD to: #CHF rate: 2.\rself assert: (bank reduce: (Money amount: 30 currency: #CHF) to: #USD) equals: (Money amount: 30/2 currency: #USD).\rself assert: (bank reduce: (Money amount: 30/2 currency: #USD) to: #CHF) equals: (Money amount: 30 currency: #CHF).\r^ bank"
 			}
 		]
 	},
