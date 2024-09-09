@@ -25,5 +25,5 @@ Bank >> initialize [
 
 { #category : #'as yet unclassified' }
 Bank >> reduce: aMoney to: aCurrency [
-	^ Money amount: aMoney amount * (self findExchangeRateFrom: aMoney currency to: aCurrency) currency: aCurrency.
+	^ aMoney convert: self to: aCurrency.
 ]

@@ -1,49 +1,21 @@
 Class {
 	#name : #Money,
 	#superclass : #Object,
-	#instVars : [
-		'amount',
-		'currency'
-	],
 	#category : #Accounting
 }
 
 { #category : #'as yet unclassified' }
-Money class >> amount: anAmount currency: aCurrency [
-	^ Money new amount:anAmount; currency: aCurrency.
+Money >> + aMoney [
+	self subclassResponsibility
 ]
 
 { #category : #'as yet unclassified' }
-Money >> = aMoney [
-	^ amount = aMoney amount and: currency = aMoney currency
-]
-
-{ #category : #'as yet unclassified' }
-Money >> amount [
-	^ amount
-]
-
-{ #category : #'as yet unclassified' }
-Money >> amount: anAmount [
-	amount := anAmount
+Money >> convert: aBank to: aCurrency [
+	self subclassResponsibility
 ]
 
 { #category : #'as yet unclassified' }
 Money >> currency [
-	^ currency
-]
-
-{ #category : #'as yet unclassified' }
-Money >> currency: aCurrency [
-	currency := aCurrency
-]
-
-{ #category : #'as yet unclassified' }
-Money >> equals: aMnoney [
-	^ amount = aMnoney amount and: currency = aMnoney currency
-]
-
-{ #category : #'as yet unclassified' }
-Money >> hash [
-	^ 7
+	"Non-concrete monies have no currency."
+	^ nil
 ]

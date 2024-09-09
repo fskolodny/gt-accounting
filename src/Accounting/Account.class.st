@@ -18,7 +18,7 @@ Account >> name [
 	^ name
 ]
 
-{ #category : #acce }
+{ #category : #accessing }
 Account >> name: aName [
 	name := aName
 ]
