@@ -9,8 +9,10 @@ Class {
 
 { #category : #'as yet unclassified' }
 JournalEntry >> account [
+	^ account
 ]
 
 { #category : #'as yet unclassified' }
 JournalEntry >> account: anAccount [
+	account := anAccount
 ]

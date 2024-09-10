@@ -14,6 +14,11 @@ Ledger >> accounts [
 ]
 
 { #category : #'as yet unclassified' }
+Ledger >> accountsForDisplay [
+	^ accounts values sort: [:account1 :account2| account1 number < account2 number]
+]
+
+{ #category : #'as yet unclassified' }
 Ledger >> addAccountNamed: aName withNumber: aNumber [
 	| account nameAsSymbol|
 	nameAsSymbol := aName asSymbol.

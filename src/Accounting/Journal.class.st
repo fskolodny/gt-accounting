@@ -22,6 +22,11 @@ Journal >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
+Journal >> ledger [
+	^ ledger
+]
+
+{ #category : #'as yet unclassified' }
 Journal >> ledger: aLedger [
 	ledger := aLedger
 ]

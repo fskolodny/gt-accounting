@@ -3,10 +3,26 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'name',
-		'number'
+		'number',
+		'entries'
 	],
 	#category : #Accounting
 }
+
+{ #category : #'as yet unclassified' }
+Account >> entries [
+	^ entries
+]
+
+{ #category : #'as yet unclassified' }
+Account >> entries: aCollection [
+	entries := aCollection
+]
+
+{ #category : #'as yet unclassified' }
+Account >> initialize [
+	entries := OrderedCollection new.
+]
 
 { #category : #'as yet unclassified' }
 Account >> key [

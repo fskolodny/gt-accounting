@@ -14,8 +14,14 @@ Bank >> addExchangeRateFrom: fromCurrency to: toCurrency rate: aFraction [
 
 { #category : #'as yet unclassified' }
 Bank >> findExchangeRateFrom: fromCurrency to: toCurrency [
-	fromCurrency = toCurrency ifTrue: [^ 1].
-	^ exchangeRates at: { fromCurrency. toCurrency} ifAbsent: [ 1 /(exchangeRates at:{toCurrency. fromCurrency})]
+	fromCurrency = toCurrency ifTrue: [ ^ 1 ].
+	^ exchangeRates
+		at: {fromCurrency.
+				toCurrency}
+		ifAbsent: [ 1
+				/ (exchangeRates
+						at: {toCurrency.
+								fromCurrency}) ]
 ]
 
 { #category : #'as yet unclassified' }

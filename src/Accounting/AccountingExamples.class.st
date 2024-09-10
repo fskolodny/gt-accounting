@@ -11,7 +11,7 @@ AccountingExamples >> emptyAccount [
 	ledger := self emptyLedger.
 	account := ledger addAccountNamed: 'Cash' withNumber: '101'.
 	self assert: ledger accounts isEmpty not.
-	^ account
+	^ account.
 ]
 
 { #category : #'as yet unclassified' }
@@ -42,6 +42,33 @@ AccountingExamples >> emptyTransaction [
 	self assert: journal transactions isEmpty not.
 	self assert: transaction isPostable not.
 	^ transaction
+]
+
+{ #category : #accessing }
+AccountingExamples >> journalEntryPosting [
+	<gtExample>
+	| transaction journal ledger cash capital |
+	journal := self emptyJournal.
+	transaction := journal addTransaction.
+	transaction
+		description: 'Initial investment';
+		date: Date today.
+	ledger := journal ledger.
+	cash := ledger addAccountNamed: #Cash withNumber: #'101'.
+	capital := ledger addAccountNamed: #Capital withNumber: '301'.
+	transaction
+		addEntry: (JournalEntry new
+				account: cash;
+				amount: 300;
+				entryType: #debit).
+	transaction
+		addEntry: (JournalEntry new
+				account: capital;
+				amount: 300;
+				entryType: #credit).
+	self assert: transaction isPostable.
+	transaction post.
+	^ journal
 ]
 
 { #category : #accessing }

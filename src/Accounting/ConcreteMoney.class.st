@@ -35,8 +35,11 @@ ConcreteMoney >> amount: anAmount [
 
 { #category : #'as yet unclassified' }
 ConcreteMoney >> convert: aBank to: aCurrency [
-	currency = aCurrency ifTrue: [^ self].
-	^ ConcreteMoney amount: (amount * (aBank findExchangeRateFrom: currency to: aCurrency)) currency: aCurrency.
+	currency = aCurrency
+		ifTrue: [ ^ self ]
+		ifFalse: [ ^ ConcreteMoney
+				amount: amount * (aBank findExchangeRateFrom: currency to: aCurrency)
+				currency: aCurrency ]
 ]
 
 { #category : #'as yet unclassified' }
