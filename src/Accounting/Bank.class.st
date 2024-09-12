@@ -26,6 +26,7 @@ Bank >> findExchangeRateFrom: fromCurrency to: toCurrency [
 
 { #category : #'as yet unclassified' }
 Bank >> initialize [
+	super initialize.
 	exchangeRates := Dictionary new.
 ]
 

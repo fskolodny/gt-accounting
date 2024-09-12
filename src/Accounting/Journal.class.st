@@ -18,6 +18,7 @@ Journal >> addTransaction [
 
 { #category : #'as yet unclassified' }
 Journal >> initialize [
+	super initialize.
 	transactions := OrderedCollection new.
 ]
 

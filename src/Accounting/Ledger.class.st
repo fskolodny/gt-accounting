@@ -34,6 +34,7 @@ Ledger >> addAccountNamed: aName withNumber: aNumber [
 
 { #category : #'as yet unclassified' }
 Ledger >> initialize [
+	super initialize.
 	accounts := IdentityDictionary new.
 ]
 

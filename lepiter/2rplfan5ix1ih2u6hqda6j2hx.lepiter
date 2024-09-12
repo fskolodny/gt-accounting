@@ -117,7 +117,7 @@
 				"string" : "It also contains a journal  which references the ledger{{gtExample:AccountingExamples>>emptyJournal}}\nThe journal contains a chronological list of transactions. {{gtExample:AccountingExamples>>emptyTransaction }}\nA transaction has: a date, a description and a list of entries each of which has an account, a monetary amount and a type of either debit or credit. \nThe transaction is displayed in three columns: date, description and entries. The entry column is divided into three columns for the account name and the amount in either the debit or credit column depending on whether the entry is a debit or a credit.\nThe following is an example of: creating a transaction, adding entries to it and then posting it. {{gtExample:AccountingExamples>>journalEntryPosting}}"
 			},
 			{
-				"__type" : "pharoSnippet",
+				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
 					"items" : [ ]
@@ -130,7 +130,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-09-06T13:50:40.079917-04:00"
+						"dateAndTimeString" : "2024-09-10T09:42:13.717332-04:00"
 					}
 				},
 				"editEmail" : {
@@ -141,48 +141,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-09-09T13:59:49.270302-04:00"
+						"dateAndTimeString" : "2024-09-12T13:21:14.206496-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "CwFIyNjdDQCcGY4LBc7ILg=="
+					"uidString" : "4oEoxyXeDQCDzyYxDb7ahA=="
 				},
-				"code" : "Object subclass: #JournalEntry  instanceVariableNames: 'account amount entryType' classVariableNames: '' package: 'Accounting'.\rObject subclass: #JournalTransaction instanceVariableNames: 'date description entries' classVariableNames: '' package: 'Accounting'."
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
+				"paragraphStyle" : {
+					"__type" : "textStyle"
 				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-09-08T09:48:35.552324-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-09-09T15:56:58.1976-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "xf47ov3dDQCga8quBuwT/Q=="
-				},
-				"code" : "| bank twoDollars|\rbank := Bank new.\rtwoDollars := ConcreteMoney amount: 2 currency: #USD.\rself assert: (bank reduce: twoDollars to: #USD) equals: twoDollars.\rbank addExchangeRateFrom: #USD to: #CHF rate: 2.\rself assert: (bank reduce: (ConcreteMoney amount: 30 currency: #CHF) to: #USD) equals: (ConcreteMoney amount: 30 /2 currency: #USD).\rself assert: (bank reduce: (ConcreteMoney amount: 30 /2 currency: #USD) to: #CHF) equals: (ConcreteMoney amount: 30 currency: #CHF).\rself assert: (bank reduce: ((ConcreteMoney amount: 30 currency: #CHF) + (ConcreteMoney amount: 5 currency: #USD)) to: #USD) equals: (ConcreteMoney amount:20 currency: #USD).\r^ bank"
+				"string" : "{{gtPage: Currencies Page|db=2rplfaousbfs9qpy8s3cp7lx5}}"
 			}
 		]
 	},

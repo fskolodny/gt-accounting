@@ -100,6 +100,7 @@ JournalTransaction >> gtTransactionView: aView [
 
 { #category : #'as yet unclassified' }
 JournalTransaction >> initialize [
+	super initialize.
 	self entries: LinkedList new.
 ]
 

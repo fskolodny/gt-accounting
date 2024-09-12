@@ -24,6 +24,11 @@ ConcreteMoney >> = aMoney [
 ]
 
 { #category : #'as yet unclassified' }
+ConcreteMoney >> addToBag: aBag [
+	aBag add: self
+]
+
+{ #category : #'as yet unclassified' }
 ConcreteMoney >> amount [
 	^ amount
 ]

@@ -21,6 +21,7 @@ Account >> entries: aCollection [
 
 { #category : #'as yet unclassified' }
 Account >> initialize [
+	super initialize.
 	entries := OrderedCollection new.
 ]
 
