@@ -58,16 +58,18 @@ AccountingExamples >> journalEntryPosting [
 	capital := ledger addAccountNamed: #Capital withNumber: '301'.
 	transaction
 		addEntry: (JournalEntry new
-				account: cash;
+				account: cash name;
 				amount: 300;
 				entryType: #debit).
 	transaction
 		addEntry: (JournalEntry new
-				account: capital;
+				account: capital name;
 				amount: 300;
 				entryType: #credit).
 	self assert: transaction isPostable.
-	transaction post.
+	transaction postTo: ledger.
+	self assert: transaction isPosted.
+	self assert: transaction isPostable not.
 	^ journal
 ]
 

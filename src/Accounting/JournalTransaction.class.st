@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'date',
 		'description',
-		'entries'
+		'entries',
+		'posted'
 	],
 	#category : #Accounting
 }
@@ -55,50 +56,6 @@ JournalTransaction >> entries: aList [
 ]
 
 { #category : #'as yet unclassified' }
-JournalTransaction >> gtTransactionView: aView [
-	<gtView>
-	^ aView columnedTree
-		title: 'Formatted';
-		priority: 100;
-		items: [ | variableNodes |
-			variableNodes := OrderedCollection new: self class allSlots size.
-			variableNodes add: (GtInspectorSelfNode hostObject: self).
-			self gtInspectorVariableNodesIn: variableNodes.
-			variableNodes ];
-		children: [ :aNode | aNode childrenNodes ];
-		column: 'Variable'
-			do: [ :aColumn | 
-				aColumn
-					cellStencil: [ BrHorizontalPane new
-							hMatchParent;
-							vFitContent;
-							alignCenter ];
-					dataBinder: [ :itemElement :aNode | 
-						| nodeIcon |
-						nodeIcon := [ aNode rawValue gtInspectorIcon
-								ifNil: [ aNode rawValue class iconNamed: aNode rawValue class systemIconName ] ]
-								on: Error
-								do: [ :error | Smalltalk ui icons iconNamed: #smallWarningIcon ].
-
-						itemElement
-							removeChildren;
-							addChild: nodeIcon asElement;
-							addChild: (BrLabel new
-									aptitude: BrGlamorousListLabelAptitude;
-									text: aNode label;
-									alignCenterLeft;
-									hMatchParent;
-									vFitContent) ] ];
-		column: 'Value'
-			text: [ :aNode | 
-				[ aNode rawValue gtDisplayText ]
-					on: Error , Halt
-					do: [ aNode errorMessage asRopedText foreground: Color red ] ];
-		send: #value;
-		actionUpdateButton
-]
-
-{ #category : #'as yet unclassified' }
 JournalTransaction >> initialize [
 	super initialize.
 	self entries: LinkedList new.
@@ -111,6 +68,7 @@ JournalTransaction >> isInBalance [
 
 { #category : #'as yet unclassified' }
 JournalTransaction >> isPostable [
+	self isPosted ifTrue: [^ false].
 	date isNil ifTrue: [^ false].
 	description isEmptyOrNil ifTrue: [^ false].
 	entries isEmptyOrNil ifTrue: [^ false].
@@ -118,15 +76,21 @@ JournalTransaction >> isPostable [
 ]
 
 { #category : #'as yet unclassified' }
-JournalTransaction >> post [
+JournalTransaction >> isPosted [
+	^ posted = true ifTrue: [true] ifFalse: [false]
+]
+
+{ #category : #'as yet unclassified' }
+JournalTransaction >> postTo: aLedger [
 	entries
 		do: [ :entry | 
-			entry account entries
+			(aLedger accounts at: entry account) entries
 				add: (AccountEntry new
 						amount: entry amount;
 						entryType: entry entryType;
 						date: date;
-						description: description) ]
+						description: description) ].
+	posted := true
 ]
 
 { #category : #'as yet unclassified' }

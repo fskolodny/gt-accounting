@@ -39,6 +39,11 @@ Ledger >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
+Ledger >> name [
+	^ name.
+]
+
+{ #category : #'as yet unclassified' }
 Ledger >> name: aString [
 	name := aString.
 ]

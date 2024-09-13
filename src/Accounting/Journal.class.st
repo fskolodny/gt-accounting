@@ -33,6 +33,12 @@ Journal >> ledger: aLedger [
 ]
 
 { #category : #'as yet unclassified' }
+Journal >> postTransactions [
+	transactions
+		do: [ :transaction | transaction isPostable ifTrue: [ transaction postTo: ledger ] ].
+]
+
+{ #category : #'as yet unclassified' }
 Journal >> transactions [
 	^ transactions
 ]
