@@ -29,14 +29,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-09-10T11:19:27.855916-04:00"
+						"dateAndTimeString" : "2024-09-13T12:56:24.530023-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "ld89wSXeDQCDxBbcDb7ahA=="
 				},
-				"code" : "| bank twoDollars thirtyFrancs fifteenDollars fiveDollars twentyDollars |\rbank := Bank new.\rtwoDollars := ConcreteMoney amount: 2 currency: #USD.\rself assert: (bank reduce: twoDollars to: #USD) equals: twoDollars.\rbank\r\taddExchangeRateFrom: #USD\r\tto: #CHF\r\trate: 2.\rthirtyFrancs := ConcreteMoney amount: 30 currency: #CHF.\rfifteenDollars := ConcreteMoney amount: 30 / 2 currency: #USD.\rself assert: (bank reduce: thirtyFrancs to: #USD) equals: fifteenDollars.\rself assert: (bank reduce: fifteenDollars to: #CHF) equals: thirtyFrancs.\rfiveDollars := ConcreteMoney amount: 5 currency: #USD.\rtwentyDollars := ConcreteMoney amount: 20 currency: #USD.\rself assert: (bank reduce: thirtyFrancs + fiveDollars to: #USD) equals: twentyDollars.\r^ bank"
+				"code" : "^ AccountingExamples new currencies"
 			}
 		]
 	},

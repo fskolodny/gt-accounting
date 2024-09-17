@@ -4,6 +4,29 @@ Class {
 	#category : #Accounting
 }
 
+{ #category : #accessing }
+AccountingExamples >> currencies [
+	<gtExample>
+	| twoDollars bank thirtyFrancs fiveDollars fifteenDollars twentyDollars |
+	bank := Bank new.
+	twoDollars := ConcreteMoney amount: 2 currency: #USD.
+	self assert: (bank reduce: twoDollars to: #USD) equals: twoDollars.
+	bank
+		addExchangeRateFrom: #USD
+		to: #CHF
+		rate: 2.
+	thirtyFrancs := ConcreteMoney amount: 30 currency: #CHF.
+	fifteenDollars := ConcreteMoney amount: 30 / 2 currency: #USD.
+	self assert: (bank reduce: thirtyFrancs to: #USD) equals: fifteenDollars.
+	self assert: (bank reduce: fifteenDollars to: #CHF) equals: thirtyFrancs.
+	fiveDollars := ConcreteMoney amount: 5 currency: #USD.
+	twentyDollars := ConcreteMoney amount: 20 currency: #USD.
+	self
+		assert: (bank reduce: thirtyFrancs + fiveDollars to: #USD)
+		equals: twentyDollars.
+	^ bank
+]
+
 { #category : #'as yet unclassified' }
 AccountingExamples >> emptyAccount [
 	<gtExample>
@@ -47,7 +70,7 @@ AccountingExamples >> emptyTransaction [
 { #category : #accessing }
 AccountingExamples >> journalEntryPosting [
 	<gtExample>
-	| transaction journal ledger cash capital |
+	| transaction journal ledger cash capital actualBalance expectedBalance |
 	journal := self emptyJournal.
 	transaction := journal addTransaction.
 	transaction
@@ -70,6 +93,12 @@ AccountingExamples >> journalEntryPosting [
 	transaction postTo: ledger.
 	self assert: transaction isPosted.
 	self assert: transaction isPostable not.
+	actualBalance := (ledger accounts at: #Cash) balance.
+	expectedBalance := Entry new
+			amount: 300;
+			entryType: #debit.
+	self assert: actualBalance amount equals: expectedBalance amount.
+	self assert: actualBalance entryType equals: expectedBalance entryType.
 	^ journal
 ]
 

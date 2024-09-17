@@ -10,6 +10,23 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+Account >> balance [
+	| debitBalance creditBalance |
+	debitBalance := Entry new
+			amount: 0;
+			entryType: #debit.
+	creditBalance := Entry new
+			amount: 0;
+			entryType: #credit.
+	entries
+		do: [ :entry | 
+			entry entryType = #debit
+				ifTrue: [ debitBalance amount: debitBalance amount + entry amount ]
+				ifFalse: [ creditBalance amount: creditBalance amount + entry amount ] ].
+	debitBalance amount < creditBalance amount ifTrue: [^ creditBalance amount: creditBalance amount - debitBalance amount; yourself] ifFalse: [^ debitBalance amount: debitBalance amount - creditBalance amount; yourself].
+]
+
+{ #category : #'as yet unclassified' }
 Account >> entries [
 	^ entries
 ]

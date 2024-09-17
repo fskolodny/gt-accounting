@@ -10,6 +10,11 @@ Money >> + aMoney [
 ]
 
 { #category : #'as yet unclassified' }
+Money >> addToBag: aBag [
+	self subclassResponsibility
+]
+
+{ #category : #'as yet unclassified' }
 Money >> convert: aBank to: aCurrency [
 	self subclassResponsibility
 ]

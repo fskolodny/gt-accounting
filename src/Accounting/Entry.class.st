@@ -27,3 +27,8 @@ Entry >> entryType [
 Entry >> entryType: aSymbol [
 	#(#debit #credit) detect: [:e | e = aSymbol] ifFound: [entryType := aSymbol]
 ]
+
+{ #category : #'as yet unclassified' }
+Entry >> equals: anEntry [
+	^ (amount = anEntry amount) and: (entryType = anEntry entryType)
+]

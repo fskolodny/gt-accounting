@@ -33,6 +33,19 @@ Ledger >> addAccountNamed: aName withNumber: aNumber [
 ]
 
 { #category : #'as yet unclassified' }
+Ledger >> gtDetailFor: aView [
+	<gtView>
+	^ aView columnedList
+		title: 'Details';
+		priority: 100;
+		items: [ self accountsForDisplay ];
+		column: 'Number' text: [ :anAccount | anAccount number ];
+		column: 'Name' text: [ :anAccount | anAccount name ];
+		column: 'Debit' text: [ :anAccount | |balance| balance := anAccount balance. balance entryType = #debit ifTrue: [balance amount asScaledDecimal: 2] ifFalse: ['']];
+		column: 'Credit' text: [ :anAccount | |balance| balance := anAccount balance. balance entryType = #credit ifTrue: [balance amount asScaledDecimal: 2] ifFalse: ['']]
+]
+
+{ #category : #'as yet unclassified' }
 Ledger >> initialize [
 	super initialize.
 	accounts := IdentityDictionary new.
